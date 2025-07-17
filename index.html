@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awesome Lists - Curated GitHub Repositories on Diverse Topics</title>
+    <meta name="description" content="Explore a curated collection of awesome lists covering Computer Science, Data Science, Machine Learning, NLP, Cryptography, Deep Learning, Gaming, Self-Hosted, Homelab, DevOps, Cybersecurity, AI, and more. Find the best open-source resources on GitHub.">
+    <meta name="keywords" content="awesome lists, github, curated lists, computer science, data science, machine learning, deep learning, neural networks, speech processing, natural language processing, nlp, cryptography, gaming, self-hosted, hacking, mac, interview questions, react, cpp, scalability, nodejs, flutter, rust, android ui, secret knowledge, beginners, development, programming, open source, web development, backend development, security, productivity, education, learning, games, fun, homelab, devops, data engineering, mlops, cloud computing, cybersecurity, artificial intelligence, ai, generative ai, llm, large language models">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Light Mode (Default Pastel Theme) */
+        :root {
+            --bg-start: #e0f7fa; /* Light cyan */
+            --bg-end: #e8f5e9;   /* Light mint green */
+            --fg: #333;
+            --accent: #ff5c5c; /* Original red accent */
+            --card: #ffffff;
+            --card-shadow: rgba(0, 0, 0, 0.06);
+        }
+
+        /* Dark Mode */
+        html.dark {
+            --bg-start: #2c3e50; /* Dark blue-gray */
+            --bg-end: #34495e;   /* Slightly darker blue-gray */
+            --fg: #ecf0f1; /* Light gray */
+            --accent: #9b59b6; /* Purple */
+            --card: #3b506b; /* Darker card background */
+            --card-shadow: rgba(0, 0, 0, 0.2);
+            --text-gradient-start: #bdc3c7; /* Lighter gray for dark mode title */
+            --text-gradient-end: #95a5a6;   /* Medium gray for dark mode title */
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(to bottom right, var(--bg-start), var(--bg-end));
+            color: var(--fg);
+            line-height: 1.6;
+            padding: 2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            transition: background 0.3s ease, color 0.3s ease;
+            box-sizing: border-box;
+        }
+        .container {
+            background-color: var(--card);
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px var(--card-shadow);
+            padding: 2.5rem;
+            max-width: 1000px;
+            width: 100%;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .main-title-section {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--fg);
+            transition: color 0.3s ease;
+            position: relative; /* For positioning the toggle button */
+            width: 100%;
+        }
+        .main-title-section h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--fg);
+            transition: color 0.3s ease;
+        }
+        html.dark .main-title-section h1 {
+            background-image: linear-gradient(to right, var(--text-gradient-start), var(--text-gradient-end));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            transition: background-image 0.3s ease;
+        }
+        .search-bar {
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+        .search-bar input {
+            width: 100%;
+            max-width: 500px;
+            padding: 0.75rem 1.25rem;
+            border: 2px solid #cbd5e0;
+            border-radius: 9999px;
+            font-size: 1.1rem;
+            outline: none;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+            background-color: var(--card);
+            color: var(--fg);
+        }
+        .search-bar input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(37, 117, 252, 0.2);
+        }
+        .category-section {
+            margin-bottom: 2.5rem;
+        }
+        .category-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--fg);
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #edf2f7;
+            padding-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .tool-card {
+            background-color: var(--card);
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 12px var(--card-shadow);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px var(--card-shadow);
+        }
+        .tool-card h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--fg);
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+        .tool-card p {
+            font-size: 0.95rem;
+            color: var(--fg);
+            opacity: 0.8;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+            transition: color 0.3s ease;
+        }
+        .tool-card .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+        .tool-card .btn {
+            flex: 1;
+            min-width: 120px;
+            background-color: var(--accent);
+            color: #fff;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            box-shadow: 0 3px 8px rgba(255, 92, 92, 0.3);
+        }
+        .tool-card .btn:hover {
+            background-color: #e04444;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(255, 92, 92, 0.5);
+        }
+        html.dark .tool-card .btn {
+            box-shadow: 0 3px 8px rgba(155, 89, 182, 0.3);
+        }
+        html.dark .tool-card .btn:hover {
+            background-color: #8e44ad;
+            box-shadow: 0 5px 12px rgba(155, 89, 182, 0.5);
+        }
+
+        .theme-toggle-btn {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--card);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 0.5rem 1rem;
+            border-radius: 999px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.1s, box-shadow 0.3s ease;
+            box-shadow: 0 2px 4px var(--card-shadow);
+        }
+        .theme-toggle-btn:hover {
+            background: var(--accent);
+            color: var(--card);
+            transform: translateY(-1px);
+        }
+        @media (max-width: 768px) {
+            .theme-toggle-btn {
+                position: static;
+                margin-top: 1rem;
+                display: inline-block;
+            }
+        }
+
+        .donate-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem; /* Space below main title */
+            margin-bottom: 2rem; /* Space above search bar */
+        }
+        .donate-buttons .btn {
+            background-color: #FFDD00; /* Buy Me a Coffee yellow */
+            color: #000; /* Black text for contrast */
+            box-shadow: 0 3px 8px rgba(255, 221, 0, 0.3);
+            font-weight: 700;
+        }
+        .donate-buttons .btn:hover {
+            background-color: #e6cb00;
+            box-shadow: 0 5px 12px rgba(255, 221, 0, 0.5);
+        }
+        .donate-buttons .btn.ko-fi {
+            background-color: #FF5E5B; /* Ko-fi red */
+            color: #fff;
+            box-shadow: 0 3px 8px rgba(255, 94, 91, 0.3);
+        }
+        .donate-buttons .btn.ko-fi:hover {
+            background-color: #e04444;
+            box-shadow: 0 5px 12px rgba(255, 94, 91, 0.5);
+        }
+        html.dark .donate-buttons .btn {
+            background-color: #9b59b6; /* Dark mode accent for donations */
+            color: #fff;
+            box-shadow: 0 3px 8px rgba(155, 89, 182, 0.3);
+        }
+        html.dark .donate-buttons .btn:hover {
+            background-color: #8e44ad;
+            box-shadow: 0 5px 12px rgba(155, 89, 182, 0.5);
+        }
+        html.dark .donate-buttons .btn.ko-fi {
+            background-color: #FF5E5B; /* Ko-fi red remains for brand recognition */
+            color: #fff;
+            box-shadow: 0 3px 8px rgba(255, 94, 91, 0.3);
+        }
+        html.dark .donate-buttons .btn.ko-fi:hover {
+            background-color: #e04444;
+            box-shadow: 0 5px 12px rgba(255, 94, 91, 0.5);
+        }
+
+
+        footer {
+            margin-top: 3rem;
+            text-align: center;
+            color: var(--fg);
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            .container {
+                padding: 1.5rem;
+                margin-top: 1rem;
+                margin-bottom: 1rem;
+            }
+            .main-title-section h1 {
+                font-size: 2rem;
+            }
+            .search-bar input {
+                font-size: 1rem;
+                padding: 0.6rem 1rem;
+            }
+            .category-section h2 {
+                font-size: 1.75rem;
+            }
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            .tool-card .btn-group {
+                flex-direction: column;
+            }
+            .tool-card .btn {
+                min-width: unset;
+                width: 100%;
+            }
+            .donate-buttons {
+                flex-direction: column;
+            }
+            .donate-buttons .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="main-title-section">
+                <h1>Awesome lists about all kinds of interesting topics</h1>
+            </div>
+            <div class="donate-buttons">
+                <a href="https://buymeacoffee.com/rustin" target="_blank" rel="noopener noreferrer" class="btn">☕ Buy Me a Coffee</a>
+                <a href="https://ko-fi.com/rustin" target="_blank" rel="noopener noreferrer" class="btn ko-fi">💖 Ko-fi</a>
+            </div>
+            <button class="theme-toggle-btn" onclick="toggleTheme()">
+                <span id="theme-icon">☀️</span> Toggle Theme
+            </button>
+        </header>
+
+        <div class="search-bar">
+            <input type="text" id="toolSearch" onkeyup="filterTools()" placeholder="Search awesome lists...">
+        </div>
+
+        <div id="awesomeListsContainer">
+            <!-- Awesome lists will be dynamically loaded here by JavaScript -->
+        </div>
+
+    </div>
+
+    <footer>
+        Made with ❤️ by <a href="https://github.com/dyal96" target="_blank" rel="noopener noreferrer">Dyal96</a>
+    </footer>
+
+    <script>
+        // Data for Awesome Lists (Manually parsed from sindresorhus/awesome README and extended)
+        const awesomeListsData = [
+            {
+                category: "AI",
+                lists: [
+                    { title: "Awesome AI Awesomeness", description: "A curated list of awesome awesomeness about artificial intelligence.", url: "https://github.com/amusi/awesome-ai-awesomeness#readme", keywords: "ai artificial intelligence machine learning deep learning nlp computer vision" },
+                    { title: "Awesome AI/ML/DL", description: "Study notes and a curated list of awesome resources of Artificial Intelligence, Machine Learning and Deep Learning.", url: "https://github.com/neomatrix369/awesome-ai-ml-dl#readme", keywords: "ai ml dl artificial intelligence machine learning deep learning" },
+                    { title: "Awesome Generative AI", description: "A curated list of modern Generative Artificial Intelligence projects and services.", url: "https://github.com/steven2358/awesome-generative-ai#readme", keywords: "generative ai text to image text to speech llm" },
+                    { title: "Awesome Generative AI Guide", description: "A one stop repository for generative AI research updates, interview resources, notebooks and much more!", url: "https://github.com/aishwaryanr/awesome-generative-ai-guide#readme", keywords: "generative ai guide research interview notebooks" },
+                    { title: "Awesome Generative AI Data Scientist", description: "A curated list of 100+ resources for building and deploying generative AI specifically focusing on helping you become a Generative AI Data Scientist with LLMs.", url: "https://github.com/business-science/awesome-generative-ai-data-scientist#readme", keywords: "generative ai data scientist llms" },
+                    { title: "Awesome Generative AI APIs", description: "A curated list of useful Generative AI & LLM APIs for developers.", url: "https://github.com/foss42/awesome-generative-ai-apis#readme", keywords: "generative ai apis llm development" },
+                    { title: "Awesome AI for LAM", description: "A curated list of resources, projects, and tools for using Artificial Intelligence in Libraries, Archives, and Museums.", url: "https://ai4lam.github.io/awesome-ai4lam/", keywords: "ai libraries archives museums lam" },
+                    { title: "Awesome-LLM", description: "A curated list of Large Language Model resources, including papers, frameworks, tools, courses, and checkpoints.", url: "https://github.com/Hannibal046/Awesome-LLM#readme", keywords: "llm large language models chatgpt nlp" },
+                    { title: "Awesome-Multimodal-Large-Language-Models", description: "Latest Advances on Multimodal Large Language Models.", url: "https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models#readme", keywords: "multimodal llm large language models vision language" },
+                    { title: "Awesome-LLM-Inference", description: "A curated list of Awesome LLM/VLM Inference Papers with Codes.", url: "https://github.com/xlite-dev/Awesome-LLM-Inference#readme", keywords: "llm vlm inference optimization" },
+                    { title: "Awesome-Efficient-LLM", description: "A curated list for Efficient Large Language Models.", url: "https://github.com/horseee/Awesome-Efficient-LLM#readme", keywords: "efficient llm large language models optimization" },
+                ]
+            },
+            {
+                category: "Back-End Development",
+                lists: [
+                    { title: "Docker", description: "Resources for containerization and Docker.", url: "https://github.com/veggiemonk/awesome-docker#readme", keywords: "docker containers virtualization" },
+                    { title: "FastAPI", description: "Python web app framework for building APIs with Python 3.7+ based on standard Python type hints.", url: "https://github.com/mjhea0/awesome-fastapi#readme", keywords: "fastapi python api web framework" },
+                    { title: "Flask", description: "Python framework for web development.", url: "https://github.com/mjhea0/awesome-flask#readme", keywords: "flask python web framework" },
+                    { title: "Kubernetes", description: "Open-source platform that automates Linux container operations.", url: "https://github.com/ramitsurana/awesome-kubernetes#readme", keywords: "kubernetes container orchestration devops" },
+                    { title: "Laravel", description: "PHP framework for web artisans.", url: "https://github.com/chiraggude/awesome-laravel#readme", keywords: "laravel php framework web" },
+                    { title: "Rails", description: "Web app framework for Ruby.", url: "https://github.com/gramantin/awesome-rails#readme", keywords: "rails ruby web framework" },
+                    { title: "Serverless Framework", description: "Serverless computing and serverless architectures.", url: "https://github.com/pmuens/awesome-serverless#readme", keywords: "serverless cloud functions faas" },
+                ]
+            },
+            {
+                category: "Books",
+                lists: [
+                    { title: "Free Programming Books", description: "Freely available programming books.", url: "https://github.com/EbookFoundation/free-programming-books#readme", keywords: "books programming free" },
+                    { title: "Go Books", description: "Free Go programming books.", url: "https://github.com/dariubs/GoBooks#readme", keywords: "go books programming" },
+                ]
+            },
+            {
+                category: "Business",
+                lists: [
+                    { title: "Remote Work", description: "Resources for working remotely.", url: "https://github.com/sindresorhus/awesome#work", keywords: "remote work business productivity" },
+                    { title: "Startup", description: "Resources for startups and entrepreneurs.", url: "https://github.com/sindresorhus/awesome#business", keywords: "startup entrepreneurship business" },
+                ]
+            },
+            {
+                category: "Cloud Computing",
+                lists: [
+                    { title: "Awesome Cloud (JStumpp)", description: "A curated list of delightful cloud services.", url: "https://github.com/JStumpp/awesome-cloud#readme", keywords: "cloud services saas paas iaas" },
+                    { title: "Awesome Cloud Computing (tmrts)", description: "A curated list of everything about cloud computing.", url: "https://github.com/tmrts/awesome-cloud-computing#readme", keywords: "cloud computing resources" },
+                    { title: "Awesome Cloud Computing (TzuriLabs)", description: "A curated list of concepts, cloud platforms, tools, practices and resources to learn, improve cloud computing knowledge.", url: "https://github.com/TzuriLabs/awesome-cloud-computing#readme", keywords: "cloud computing platforms tools resources" },
+                    { title: "Awesome CloudOps", description: "A curated list of tools and best practices for CloudOps.", url: "https://github.com/Noovolari/awesome-cloudops#readme", keywords: "cloudops operations best practices" },
+                ]
+            },
+            {
+                category: "Computer Science",
+                lists: [
+                    { title: "Big Data", description: "A curated list of awesome Big Data frameworks, resources and other awesomeness.", url: "https://github.com/onuratakan/awesome-bigdata#readme", keywords: "big data analytics processing" },
+                    { title: "Computer Vision", description: "A curated list of awesome computer vision resources.", url: "https://github.com/jbhuang0604/awesome-computer-vision#readme", keywords: "computer vision image processing" },
+                    { title: "Cryptography", description: "A curated list of awesome cryptography resources and links.", url: "https://github.com/sobolevn/awesome-cryptography#readme", keywords: "cryptography security encryption decryption" },
+                    { title: "Data Science", description: "Curated resources for data analysis and machine learning.", url: "https://github.com/academic/awesome-datascience#readme", keywords: "data science machine learning analytics statistics" },
+                    { title: "Deep Learning", description: "Resources for Deep Learning, including frameworks, tutorials, and research papers.", url: "https://github.com/ChristosChristofidis/awesome-deep-learning#readme", keywords: "deep learning neural networks ai" },
+                    { title: "Machine Learning", description: "A curated list of awesome Machine Learning frameworks, libraries, and software.", url: "https://github.com/josephmisiti/awesome-machine-learning#readme", keywords: "machine learning ai artificial intelligence" },
+                    { title: "Quantum Computing", description: "Computing that utilizes quantum mechanics and qubits on quantum computers.", url: "https://github.com/desireevl/awesome-quantum-computing#readme", keywords: "quantum computing qubits" },
+                    { title: "Speech and Natural Language Processing", description: "Resources for working with speech and natural language processing.", url: "https://github.com/edobashira/speech-language-processing#readme", keywords: "speech nlp natural language processing" },
+                    { title: "Theory", description: "Fundamental concepts and theoretical aspects of computer science.", url: "https://github.com/sindresorhus/awesome#theory", keywords: "theory algorithms data structures" },
+                    { title: "University Courses", description: "A collection of free online university courses in Computer Science.", url: "https://github.com/prakhar1989/awesome-courses#readme", keywords: "computer science education courses learning" },
+                ]
+            },
+            {
+                category: "Content Management Systems",
+                lists: [
+                    { title: "Joomla", description: "A free and open-source content management system.", url: "https://github.com/sindresorhus/awesome#content-management-systems", keywords: "joomla cms" },
+                    { title: "WordPress", description: "A popular content management system.", url: "https://github.com/hkpress/awesome-wordpress#readme", keywords: "wordpress cms blogging" },
+                ]
+            },
+            {
+                category: "Databases",
+                lists: [
+                    { title: "MongoDB", description: "A general-purpose, document-based, distributed database built for modern application developers.", url: "https://github.com/ramitsurana/awesome-mongodb#readme", keywords: "mongodb nosql database" },
+                    { title: "PostgreSQL", description: "A powerful, open source object-relational database system.", url: "https://github.com/dhabecker/awesome-postgres#readme", keywords: "postgresql database sql" },
+                ]
+            },
+            {
+                category: "Data Engineering",
+                lists: [
+                    { title: "Awesome Data Engineering (igorbarinov)", description: "A curated list of data engineering tools for software developers.", url: "https://github.com/igorbarinov/awesome-data-engineering#readme", keywords: "data engineering tools software development" },
+                    { title: "Awesome Open Source Data Engineering (pracdata)", description: "A curated list of open source tools used in analytics platforms and data engineering ecosystem.", url: "https://github.com/pracdata/awesome-open-source-data-engineering#readme", keywords: "data engineering open source analytics pipelines" },
+                ]
+            },
+            {
+                category: "Decentralized Systems",
+                lists: [
+                    { title: "Bitcoin", description: "Bitcoin services and tools for software developers.", url: "https://github.com/sindresorhus/awesome#decentralized-systems", keywords: "bitcoin blockchain cryptocurrency" },
+                    { title: "Blockchain", description: "Resources for blockchain technology.", url: "https://github.com/sindresorhus/awesome#decentralized-systems", keywords: "blockchain cryptocurrency decentralized" },
+                ]
+            },
+            {
+                category: "Development & Productivity",
+                lists: [
+                    { title: "Awesome for Beginners", description: "A list of awesome beginner-friendly projects.", url: "https://github.com/MunGell/awesome-for-beginners#readme", keywords: "beginners first contributions open source" },
+                    { title: "Awesome Interview Questions", description: "A curated list of lists of interview questions.", url: "https://github.com/DopplerHQ/awesome-interview-questions#readme", keywords: "interview questions coding technical job search" },
+                    { title: "Awesome Scalability", description: "A curated list of articles and resources for building scalable, available, and maintainable applications.", url: "https://github.com/binhnguyennus/awesome-scalability#readme", keywords: "scalability distributed systems architecture" },
+                    { title: "Development Environment", description: "A curated list of awesome development environment resources.", url: "https://github.com/sindresorhus/awesome#development-environment", keywords: "development environment tools ide setup" },
+                    { title: "GitHub Cheat Sheet", description: "A collection of GitHub tips, tricks, and best practices.", url: "https://github.com/tiimgreen/github-cheat-sheet#readme", keywords: "github cheat sheet git commands" },
+                    { title: "HelloGitHub", description: "Monthly GitHub project recommendations for beginners.", url: "https://github.com/521xueweihan/HelloGitHub#readme", keywords: "hello github open source projects learning" },
+                    { title: "Work", description: "Resources related to work, remote jobs, and productivity.", url: "https://github.com/sindresorhus/awesome#work", keywords: "work remote jobs productivity career" },
+                ]
+            },
+            {
+                category: "DevOps",
+                lists: [
+                    { title: "Awesome DevOps (AcalephStorage)", description: "A curated list of resources for Devops.", url: "https://github.com/AcalephStorage/awesome-devops#readme", keywords: "devops resources tools practices" },
+                    { title: "Awesome DevOps (wmariuss)", description: "A curated list of platforms, tools, practices and resources to create, improve DevOps culture and SRE Team in the organization.", url: "https://github.com/wmariuss/awesome-devops#readme", keywords: "devops sre automation ci cd" },
+                ]
+            },
+            {
+                category: "Editors",
+                lists: [
+                    { title: "Vim", description: "A highly configurable text editor for efficiently creating and changing any kind of text.", url: "https://github.com/mhinz/vim-galore#readme", keywords: "vim editor text editor" },
+                    { title: "VS Code", description: "A lightweight but powerful source code editor.", url: "https://github.com/viatsko/awesome-vscode#readme", keywords: "vscode visual studio code editor" },
+                ]
+            },
+            {
+                category: "Entertainment",
+                lists: [
+                    { title: "Podcasts", description: "A curated list of awesome podcasts.", url: "https://github.com/sindresorhus/awesome#entertainment", keywords: "podcasts audio learning" },
+                    { title: "Science Fiction", description: "Awesome science fiction books, movies, TV shows, and more.", url: "https://github.com/sindresorhus/awesome#entertainment", keywords: "science fiction scifi movies books" },
+                ]
+            },
+            {
+                category: "Events",
+                lists: [
+                    { title: "Conferences", description: "A list of awesome conferences.", url: "https://github.com/sindresorhus/awesome#events", keywords: "conferences events tech" },
+                    { title: "Meetups", description: "A list of awesome meetups.", url: "https://github.com/sindresorhus/awesome#events", keywords: "meetups events tech" },
+                ]
+            },
+            {
+                category: "Front-End Development",
+                lists: [
+                    { title: "Angular", description: "App framework for building web applications.", url: "https://github.com/PatrickJS/awesome-angular#readme", keywords: "angular web framework frontend" },
+                    { title: "CSS", description: "Style sheet language that specifies how HTML elements are displayed on screen.", url: "https://github.com/awesome-css-group/awesome-css#readme", keywords: "css styling web design" },
+                    { title: "HTML5", description: "Markup language used for websites & web apps.", url: "https://github.com/diegocard/awesome-html5#readme", keywords: "html5 markup web" },
+                    { title: "Progressive Web Apps", description: "Resources for building Progressive Web Apps (PWAs).", url: "https://github.com/TalAter/awesome-progressive-web-apps#readme", keywords: "pwa progressive web apps offline" },
+                    { title: "React", description: "JavaScript library for building user interfaces.", url: "https://github.com/enaqx/awesome-react#readme", keywords: "react javascript ui frontend" },
+                    { title: "Tailwind CSS", description: "Utility-first CSS framework for rapid UI development.", url: "https://github.com/aniftyco/awesome-tailwindcss#readme", keywords: "tailwind css framework ui" },
+                    { title: "Vue.js", description: "App framework for building user interfaces.", url: "https://github.com/vuejs/awesome-vue#readme", keywords: "vuejs vue web framework frontend" },
+                    { title: "Web Accessibility", description: "Resources for building accessible web experiences.", url: "https://github.com/brunopulis/awesome-a11y#readme", keywords: "accessibility a11y web standards" },
+                    { title: "Web Assembly", description: "A portable binary format for running code efficiently across platforms.", url: "https://github.com/idematos/awesome-webassembly#readme", keywords: "webassembly wasm performance" },
+                    { title: "Web Performance Optimization", description: "Resources for optimizing web performance.", url: "https://github.com/davidsonfellipe/awesome-wpo#readme", keywords: "web performance optimization speed" },
+                ]
+            },
+            {
+                category: "Gaming",
+                lists: [
+                    { title: "Gaming", description: "A curated list of awesome Gaming resources, frameworks, libraries and software.", url: "https://github.com/sindresorhus/awesome?tab=readme-ov-file#gaming", keywords: "gaming game development engines" },
+                ]
+            },
+            {
+                category: "Hardware",
+                lists: [
+                    { title: "Arduino", description: "An open-source electronics platform based on easy-to-use hardware and software.", url: "https://github.com/sindresorhus/awesome#hardware", keywords: "arduino electronics iot" },
+                    { title: "Raspberry Pi", description: "Credit card-sized computer aimed at teaching kids programming, but capable of a lot more.", url: "https://github.com/thibmaek/awesome-raspberry-pi#readme", keywords: "raspberry pi hardware iot" },
+                ]
+            },
+            {
+                category: "Health and Social Science",
+                lists: [
+                    { title: "Bioinformatics", description: "Computational biology and bioinformatics resources.", url: "https://github.com/sindresorhus/awesome#health-and-social-science", keywords: "bioinformatics biology health" },
+                    { title: "Psychology", description: "Resources for psychology and cognitive science.", url: "https://github.com/sindresorhus/awesome#health-and-social-science", keywords: "psychology cognitive science" },
+                ]
+            },
+            {
+                category: "Homelab",
+                lists: [
+                    { title: "Awesome Homelab (ccbikai)", description: "Curating Top Open Source Apps for Homelab Enthusiasts.", url: "https://github.com/ccbikai/awesome-homelab#readme", keywords: "homelab open source apps" },
+                    { title: "Awesome Homelab (homelab-garden)", description: "A categorized community-driven collection of awesome homelab resources, tools, frameworks and software. The essentials to build, run and deploy your own homelab.", url: "https://github.com/homelab-garden/awesome-homelab#readme", keywords: "homelab self-hosted home server" },
+                    { title: "Awesome Homepage (ZhaoUncle)", description: "A curated list of outstanding projects with a focus on homepage, homelab, self-hosted, startpage, single-page, bookmark.", url: "https://github.com/ZhaoUncle/Awesome-Homepage#readme", keywords: "homelab homepage self-hosted startpage" },
+                ]
+            },
+            {
+                category: "Learn",
+                lists: [
+                    { title: "Free Learning Resources", description: "A collection of free learning resources on various topics.", url: "https://github.com/sindresorhus/awesome#learn", keywords: "free learning resources education" },
+                    { title: "Learn to Code", description: "Resources for learning programming and computer science.", url: "https://github.com/sindresorhus/awesome#learn", keywords: "learn code programming education" },
+                ]
+            },
+            {
+                category: "Media",
+                lists: [
+                    { title: "Audio", description: "Resources for audio processing, synthesis, and analysis.", url: "https://github.com/sindresorhus/awesome#media", keywords: "audio sound music" },
+                    { title: "Video", description: "Resources for video processing and manipulation.", url: "https://github.com/sindresorhus/awesome#media", keywords: "video editing streaming" },
+                ]
+            },
+            {
+                category: "Miscellaneous",
+                lists: [
+                    { title: "Miscellaneous", description: "Various awesome lists that don't fit into other categories.", url: "https://github.com/sindresorhus/awesome#miscellaneous", keywords: "miscellaneous general resources" },
+                    { title: "Open Source", description: "Resources for contributing to open source projects.", url: "https://github.com/sindresorhus/awesome#miscellaneous", keywords: "open source contribution" },
+                ]
+            },
+            {
+                category: "MLOps",
+                lists: [
+                    { title: "Awesome MLOps (kelvins)", description: "A curated list of awesome MLOps tools.", url: "https://github.com/kelvins/awesome-mlops#readme", keywords: "mlops tools machine learning operations" },
+                    { title: "Awesome MLOps (Pythondeveloper6)", description: "All the available resources to master MLOPS from scratch.", url: "https://github.com/Pythondeveloper6/Awesome-MLOPS#readme", keywords: "mlops resources learning roadmap" },
+                    { title: "Awesome MLOps Platforms", description: "A curated list of awesome open source and commercial MLOps platforms.", url: "https://github.com/awesome-mlops/awesome-mlops-platforms#readme", keywords: "mlops platforms machine learning operations" },
+                ]
+            },
+            {
+                category: "Networking",
+                lists: [
+                    { title: "Network Analysis", description: "Tools and resources for network analysis.", url: "https://github.com/sindresorhus/awesome#networking", keywords: "network analysis cybersecurity" },
+                    { title: "Software-Defined Networking", description: "Resources for SDN.", url: "https://github.com/sindresorhus/awesome#networking", keywords: "sdn networking" },
+                ]
+            },
+            {
+                category: "Platforms",
+                lists: [
+                    { title: "Android", description: "Mobile operating system developed by Google.", url: "https://github.com/JStumpp/awesome-android#readme", keywords: "android mobile development google" },
+                    { title: "Deno", description: "A secure runtime for JavaScript and TypeScript that uses V8 and is built in Rust.", url: "https://github.com/denolib/awesome-deno#readme", keywords: "deno javascript typescript runtime rust" },
+                    { title: "Electron", description: "Cross-platform native desktop apps using JavaScript/HTML/CSS.", url: "https://github.com/sindresorhus/awesome-electron#readme", keywords: "electron desktop apps javascript html css" },
+                    { title: "Firebase", description: "App development platform built on Google Cloud.", url: "https://github.com/jthegedus/awesome-firebase#readme", keywords: "firebase google cloud app development" },
+                    { title: "Flutter", description: "Google's mobile SDK for building native iOS and Android apps from a single codebase written in Dart.", url: "https://github.com/Solido/awesome-flutter#readme", keywords: "flutter mobile development dart cross-platform" },
+                    { title: "Frontend Development", description: "Curated resources for frontend web development.", url: "https://github.com/dypsilon/frontend-dev-bookmarks#readme", keywords: "frontend web development" },
+                    { title: "iOS", description: "Mobile operating system for Apple phones and tablets.", url: "https://github.com/vsouza/awesome-ios#readme", keywords: "ios apple mobile development" },
+                    { title: "Linux", description: "A curated list of awesome Linux resources and tools.", url: "https://github.com/inputsh/awesome-linux#readme", keywords: "linux operating system os" },
+                    { title: "macOS Apps", description: "A curated list of awesome applications, utilities, and frameworks for macOS.", url: "https://github.com/jaywcjlove/awesome-mac#readme", keywords: "macos apple apps software" },
+                    { title: "Node.js", description: "Async non-blocking event-driven JavaScript runtime built on Chrome's V8 JavaScript engine.", url: "https://github.com/sindresorhus/awesome-nodejs#readme", keywords: "nodejs javascript runtime" },
+                    { title: "Windows", description: "A curated list of awesome Windows applications, tools, and resources.", url: "https://github.com/0pandadev/awesome-windows#readme", keywords: "windows operating system os" },
+                ]
+            },
+            {
+                category: "Programming Languages",
+                lists: [
+                    { title: "C/C++", description: "General-purpose language with a bias toward system programming and embedded, resource-constrained software.", url: "https://github.com/fffaraz/awesome-cpp#readme", keywords: "c cpp programming language systems embedded" },
+                    { title: "Go", description: "A curated list of awesome Go frameworks, libraries and software.", url: "https://github.com/avelino/awesome-go#readme", keywords: "go golang programming language concurrency" },
+                    { title: "Java", description: "Popular secure object-oriented language designed for flexibility to 'write once, run anywhere'.", url: "https://github.com/akullpp/awesome-java#readme", keywords: "java programming language jvm android" },
+                    { title: "JavaScript", description: "Everything related to JavaScript development.", url: "https://github.com/sorrycc/awesome-javascript#readme", keywords: "javascript programming language web" },
+                    { title: "Kotlin", description: "A modern cross-platform programming language.", url: "https://github.com/KotlinBy/awesome-kotlin#readme", keywords: "kotlin programming language android jvm" },
+                    { title: "PHP", description: "Server-side scripting language.", url: "https://github.com/ziadoz/awesome-php#readme", keywords: "php programming language web backend" },
+                    { title: "Python", description: "General-purpose programming language designed for readability.", url: "https://github.com/vinta/awesome-python#readme", keywords: "python programming language scripting data science" },
+                    { title: "Ruby", description: "A dynamic, open source programming language with a focus on simplicity and productivity.", url: "https://github.com/markets/awesome-ruby#readme", keywords: "ruby programming language web development" },
+                    { title: "Rust", description: "A curated list of awesome Rust frameworks, libraries and software.", url: "https://github.com/rust-unofficial/awesome-rust#readme", keywords: "rust programming language systems" },
+                    { title: "Swift", description: "Apple's compiled programming language that is secure, modern, programmer-friendly, and fast.", url: "https://github.com/matteocrippa/awesome-swift#readme", keywords: "swift programming language apple ios" },
+                ]
+            },
+            {
+                category: "Related",
+                lists: [
+                    { title: "Awesome-Awesome", description: "A list of awesome lists that are awesome.", url: "https://github.com/sindresorhus/awesome#related", keywords: "awesome awesome lists meta" },
+                    { title: "Awesome-Badges", description: "Badges for your personal developer branding, profile, and projects.", url: "https://github.com/alexandresanlim/Badges4-README.md-Profile#readme", keywords: "badges readme github profile" },
+                ]
+            },
+            {
+                category: "Security & Hacking",
+                lists: [
+                    { title: "Awesome Cyber Security (fabionoth)", description: "A collection of awesome software, libraries, documents, books, resources and cools stuffs about security.", url: "https://github.com/fabionoth/awesome-cyber-security#readme", keywords: "cybersecurity software libraries documents" },
+                    { title: "Awesome Cyber Security (okhosting)", description: "A curated list of cyber security resources and tools.", url: "https://github.com/okhosting/awesome-cyber-security#readme", keywords: "cybersecurity resources tools" },
+                    { title: "Awesome Cyber Security (TzuriLabs)", description: "A bunch of resources containing learning resources, certifications, security frameworks, bug bounties, podcasts and tools used for cyber security.", url: "https://github.com/TzuriLabs/awesome-cyber-security#readme", keywords: "cybersecurity learning certifications frameworks" },
+                    { title: "Awesome Hacking", description: "A curated list of awesome Hacking tutorials, tools and resources.", url: "https://github.com/Hack-with-Github/Awesome-Hacking#readme", keywords: "hacking cybersecurity penetration testing" },
+                    { title: "Security", description: "A curated list of awesome security resources and tools.", url: "https://github.com/sindresorhus/awesome#security", keywords: "security cybersecurity best practices" },
+                    { title: "The Book of Secret Knowledge", description: "A collection of inspiring lists, manuals, cheatsheets, blogs, and other resources for pentesters, reverse engineers and security researchers.", url: "https://github.com/trimstray/the-book-of-secret-knowledge#readme", keywords: "secret knowledge cybersecurity pentesting osint" },
+                ]
+            },
+            {
+                category: "Self-Hosted",
+                lists: [
+                    { title: "Awesome Self-Hosted", description: "A list of Free Software network services and web applications which can be hosted locally.", url: "https://github.com/awesome-selfhosted/awesome-selfhosted#readme", keywords: "self-hosted open source private servers" },
+                ]
+            },
+            {
+                category: "Testing",
+                lists: [
+                    { title: "JavaScript Testing", description: "Resources for testing JavaScript applications.", url: "https://github.com/sindresorhus/awesome#testing", keywords: "javascript testing qa" },
+                    { title: "Python Testing", description: "Resources for testing Python applications.", url: "https://github.com/sindresorhus/awesome#testing", keywords: "python testing qa" },
+                ]
+            },
+        ];
+
+        // Sort categories alphabetically by their 'category' property
+        awesomeListsData.sort((a, b) => a.category.localeCompare(b.category));
+
+        // Function to set the theme based on localStorage or system preference
+        function setTheme(theme) {
+            const html = document.documentElement;
+            const themeIcon = document.getElementById('theme-icon');
+            if (theme === 'dark') {
+                html.classList.add('dark');
+                themeIcon.textContent = '🌙'; // Moon icon for dark mode
+                localStorage.setItem('theme', 'dark');
+            } else {
+                html.classList.remove('dark');
+                themeIcon.textContent = '☀️'; // Sun icon for light mode
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Function to toggle the theme
+        function toggleTheme() {
+            const currentTheme = localStorage.getItem('theme');
+            if (currentTheme === 'dark') {
+                setTheme('light');
+            } else {
+                setTheme('dark');
+            }
+        }
+
+        // Function to render the awesome lists dynamically
+        function renderAwesomeLists(data) {
+            const container = document.getElementById('awesomeListsContainer');
+            container.innerHTML = ''; // Clear existing content
+
+            data.forEach(categoryData => {
+                const categorySection = document.createElement('div');
+                categorySection.className = 'category-section';
+                categorySection.id = categoryData.category.toLowerCase().replace(/\s+/g, '-') + '-category';
+
+                const categoryTitle = document.createElement('h2');
+                categoryTitle.textContent = categoryData.category;
+                categorySection.appendChild(categoryTitle);
+
+                const toolsGrid = document.createElement('div');
+                toolsGrid.className = 'tools-grid';
+
+                categoryData.lists.forEach(listItem => {
+                    const toolCard = document.createElement('div');
+                    toolCard.className = 'tool-card';
+                    toolCard.setAttribute('data-keywords', listItem.keywords);
+
+                    toolCard.innerHTML = `
+                        <h3>${listItem.title}</h3>
+                        <p>${listItem.description}</p>
+                        <div class="btn-group">
+                            <a href="${listItem.url}" target="_blank" rel="noopener noreferrer" class="btn">Visit List</a>
+                        </div>
+                    `;
+                    toolsGrid.appendChild(toolCard);
+                });
+                categorySection.appendChild(toolsGrid);
+                container.appendChild(categorySection);
+            });
+        }
+
+        // Function to filter tools based on search input
+        function filterTools() {
+            const searchInput = document.getElementById('toolSearch');
+            const filter = searchInput.value.toLowerCase();
+            const toolCards = document.querySelectorAll('.tool-card');
+            const categorySections = document.querySelectorAll('.category-section');
+
+            toolCards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const description = card.querySelector('p').textContent.toLowerCase();
+                const keywords = card.getAttribute('data-keywords').toLowerCase();
+
+                if (title.includes(filter) || description.includes(filter) || keywords.includes(filter)) {
+                    card.style.display = 'flex'; // Show the card
+                } else {
+                    card.style.display = 'none'; // Hide the card
+                }
+            });
+
+            // Show/hide categories based on whether they contain visible tools
+            categorySections.forEach(category => {
+                const visibleToolsInCategories = category.querySelectorAll('.tool-card[style*="display: flex"]');
+                if (visibleToolsInCategories.length > 0) {
+                    category.style.display = 'block'; // Show category
+                } else {
+                    category.style.display = 'none'; // Hide category
+                }
+            });
+        }
+
+        // Apply theme and render lists on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                setTheme(savedTheme);
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                setTheme('dark');
+            } else {
+                setTheme('light');
+            }
+
+            renderAwesomeLists(awesomeListsData); // Render all lists initially
+        });
+    </script>
+</body>
+</html>
